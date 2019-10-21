@@ -102,7 +102,7 @@ class _LoginRouteState extends State<LoginRoute> {
                           ButtonGreen(
                             text: 'Entrar',
                             onPressed: (){
-                              Navigator.pushNamed(context, '/dashboard');
+                              Navigator.pushNamed(context, '/perfil');
                             },
                             height: 50,
                           ),
