@@ -1,4 +1,4 @@
-import 'package:auth_and_db_connection/profile_route.dart';
+import 'profile_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

@@ -122,34 +122,74 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
 }
 
 
-class Shalala extends StatelessWidget{
+
+
+class Shalala extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _Shalala();
+  }
+}
+
+class _Shalala extends State<Shalala>{
+  bool tapped;
   @override
   Widget build(BuildContext context){
 
     var screenSize = MediaQuery.of(context).size;
+    tapped = true;
 
     return Container(
       width: screenSize.width,
-      child: Align(
-        alignment: Alignment.centerRight,
+      alignment: Alignment.centerRight,
+      child: ClipPath(
         child: PanFlareActor(
-          width: 132.5,
+          width: 265.0,
           height: screenSize.height,
-          filename: 'assets/animations/tuts.flr',
-          openAnimation: 'open',
-          closeAnimation: 'close',
+          filename: "assets/animations/tuts.flr",
+          openAnimation: 'abrir',
+          closeAnimation: 'cerrar',
           direction: ActorAdvancingDirection.RightToLeft,
           threshold: 20.0,
           reverseOnRelease: false,
           completeOnThresholdReached: false,
           activeAreas: [
             RelativePanArea(
-                area: Rect.fromLTWH(0, 0.7, 1.0, 0.3),
-                debugArea: false
+              area: Rect.fromLTWH(0, 0.735, 1, 0.15),
+              debugArea: true,
+              onAreaTapped: (){
+                tapped ? tapped = false : tapped = true;
+                print(tapped);
+              },
             )
           ],
         ),
+        //clipper: MyClipper(),
       ),
     );
   }
 }
+
+/*
+class MyClipper extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+    var pathCerrado = Path();
+    pathCerrado.moveTo(size.width*0.8, 0.0);
+    pathCerrado.lineTo(size.width*0.8, size.height);
+    pathCerrado.lineTo(size.width, size.height);
+    pathCerrado.lineTo(size.width, 0.0);
+    pathCerrado.close();
+
+    var pathAbierto = Path();
+    pathAbierto.lineTo(0.0, size.height);
+    pathAbierto.lineTo(size.width, size.height);
+    pathAbierto.lineTo(size.width, 0.0);
+    pathAbierto.close();
+
+    return pathCerrado;
+  }
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
+}*/
