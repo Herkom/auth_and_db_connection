@@ -1,7 +1,6 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_flare/enums.dart';
-import 'package:smart_flare/smart_flare.dart';
 import 'dart:ui';
 
 class ProfileRoute extends StatelessWidget{
@@ -17,10 +16,14 @@ class ProfileRoute extends StatelessWidget{
       children: <Widget>[
         Container(
           color: Colors.white,
+
+          /// CustomScrollView nos permite tener el
+          /// Sliver de Usuario y el Sliver de tarjetas al mismo tiempo ///
+          /// --------------------------------------------------------- ///
           child: CustomScrollView(
             slivers: <Widget>[
               SliverPersistentHeader(
-                delegate: MySliverAppBar(expandedHeight: screenHeight*0.6),
+                delegate: SliverUsuario(expandedHeight: screenHeight*0.6),
                 pinned: false,
               ),
               SliverList(
@@ -62,10 +65,15 @@ class ProfileRoute extends StatelessWidget{
   }
 }
 
-class MySliverAppBar extends SliverPersistentHeaderDelegate {
+
+
+
+/// Sliver con la foto de Usuario ///
+/// ------------------------------------------ ///
+class SliverUsuario extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
 
-  MySliverAppBar({@required this.expandedHeight});
+  SliverUsuario({@required this.expandedHeight});
 
   @override
   Widget build(
@@ -96,8 +104,14 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
             ),
           ),
         ),
+
+        // Position crea la barra superior redondeada del Sliver ///
+        // Esto al final es un 'hack' de UI, no debería de ser así ///
+        // ------------------------------------------ ///
         Positioned(
-          bottom: 0.0,
+          // El -0.1 quita esa pequeña linea transparente
+          // que queda entre el Sliver de Usuario y el SliverList
+          bottom: -0.1,
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 30.0,
@@ -124,6 +138,9 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
 
 
 
+/// Menú desplegable animado ///
+/// ------------------------ ///
+
 class Shalala extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -132,64 +149,136 @@ class Shalala extends StatefulWidget{
   }
 }
 
-class _Shalala extends State<Shalala>{
-  bool tapped;
+class _Shalala extends State<Shalala>  with TickerProviderStateMixin{
+  Size screenSize;
+  String nombreAnimacion = 'cerrar';
+  double distanciaIzquierda;
+
+  AnimationController _controller;
+  Animation<double> animation;
+  final double anchoComienzo = 0.85;
+  final double anchoTermino = 0.0;
+
+
+  /// Settings de la animación ///
+  /// ------------------------------------------ ///
+  @override
+  void initState() {
+    super.initState();                           //Duration puede tener horas, minutos, dias, milisegundos, etc.
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 100));
+    animation = Tween<double>(begin: anchoComienzo, end: anchoTermino).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context){
+    screenSize = MediaQuery.of(context).size;
+    distanciaIzquierda = screenSize.width-(screenSize.width/7);
 
-    var screenSize = MediaQuery.of(context).size;
-    tapped = true;
 
-    return Container(
-      width: screenSize.width,
-      alignment: Alignment.centerRight,
-      child: ClipPath(
-        child: PanFlareActor(
-          width: 265.0,
-          height: screenSize.height,
-          filename: "assets/animations/tuts.flr",
-          openAnimation: 'abrir',
-          closeAnimation: 'cerrar',
-          direction: ActorAdvancingDirection.RightToLeft,
-          threshold: 20.0,
-          reverseOnRelease: false,
-          completeOnThresholdReached: false,
-          activeAreas: [
-            RelativePanArea(
-              area: Rect.fromLTWH(0, 0.735, 1, 0.15),
-              debugArea: true,
-              onAreaTapped: (){
-                tapped ? tapped = false : tapped = true;
-                print(tapped);
-              },
-            )
-          ],
-        ),
-        //clipper: MyClipper(),
-      ),
+    /// AnimatedBuilder nos da la funcionalidad de animación usando el _controller de arriba ^^^ ///
+    /// ---------------------------------------------------------------------------------------- ///
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, anim){
+        return ClipPath(
+          child: Stack(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  width: screenSize.width*0.75,
+                  height: screenSize.height,
+                  //color: Colors.blue.withAlpha(50),
+
+                  /// Esto es lo que trae la animación a Flutter ///
+                  /// ------------------------------------------ ///
+                  // El FlareActor responde directamente a las medidas de su padre.
+                  child: FlareActor(
+                    'assets/animations/tuts.flr',
+                    alignment: Alignment.centerRight,
+                    fit: BoxFit.contain,
+                    animation: nombreAnimacion,
+                  ),
+                )
+              ),
+
+
+
+              // Debo hacer que solo usemos un solo Container y que su posición se anime.
+
+              /// Las areas que disparan la animación ///
+              /// ------------------------------------------ ///
+              Positioned(
+                top: screenSize.height*0.72,
+                left: distanciaIzquierda,
+                child: GestureDetector(
+                  onTap: (){
+                    var tempName = (nombreAnimacion == 'cerrar') ? 'abrir' : 'cerrar';
+                    setState(() {
+                      nombreAnimacion = tempName;
+                      _controller.forward(from: 0.0);
+                    });
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    width: screenSize.width/7,
+                    height: 130,
+                  ),
+                )
+              ),
+              Positioned(
+                  top: screenSize.height*0.72,
+                  left: screenSize.width*0.25,
+                  child: GestureDetector(
+                    onTap: (){
+                      var tempName = (nombreAnimacion == 'cerrar') ? 'abrir' : 'cerrar';
+                      setState(() {
+                        nombreAnimacion = tempName;
+                        _controller.animateBack(0.0, duration: Duration(milliseconds: 700));
+                      });
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      width: screenSize.width/7,
+                      height: 170,
+                    ),
+                  )
+              )
+            ],
+          ),
+          clipper: ElClipper(animation.value),
+        );
+      }
     );
   }
 }
 
-/*
-class MyClipper extends CustomClipper<Path>{
+
+/// El trazado de la máscara ///
+/// ------------------------ ///
+class ElClipper extends CustomClipper<Path>{
+
+  final double medida;
+  ElClipper(this.medida);
+
   @override
   Path getClip(Size size) {
-    var pathCerrado = Path();
-    pathCerrado.moveTo(size.width*0.8, 0.0);
-    pathCerrado.lineTo(size.width*0.8, size.height);
-    pathCerrado.lineTo(size.width, size.height);
-    pathCerrado.lineTo(size.width, 0.0);
-    pathCerrado.close();
+    var elPath = Path();
+    elPath.moveTo(size.width, 0.0);
+    elPath.lineTo(size.width, size.height);
+    elPath.lineTo(size.width*medida, size.height);
+    elPath.lineTo(size.width*medida, 0.0);
+    elPath.close();
 
-    var pathAbierto = Path();
-    pathAbierto.lineTo(0.0, size.height);
-    pathAbierto.lineTo(size.width, size.height);
-    pathAbierto.lineTo(size.width, 0.0);
-    pathAbierto.close();
-
-    return pathCerrado;
+    return elPath;
   }
+
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => true;
-}*/
+}
