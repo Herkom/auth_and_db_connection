@@ -1,3 +1,4 @@
+import 'chat_route.dart';
 import 'profile_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
           '/botonera': (context) => BotoneraRoute(),
           '/dashboard': (context) => DashboardRoute(),
           '/perfil': (context) => ProfileRoute(),
+          '/chat': (context) => ChatRoute(),
         }
     );
   }

@@ -51,7 +51,6 @@ class _ButtonGreen extends State<ButtonGreen>{
                 fontFamily: "Lato",
                 color: Colors.white
             ),
-
           ),
         ),
       ),

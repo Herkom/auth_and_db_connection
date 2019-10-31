@@ -67,7 +67,6 @@ class ProfileRoute extends StatelessWidget{
 
 
 
-
 /// Sliver con la foto de Usuario ///
 /// ------------------------------------------ ///
 class SliverUsuario extends SliverPersistentHeaderDelegate {
@@ -151,7 +150,7 @@ class Shalala extends StatefulWidget{
 
 class _Shalala extends State<Shalala>  with TickerProviderStateMixin{
   Size screenSize;
-  String nombreAnimacion = 'cerrar';
+  String nombreAnimacion = 'seteo';
   double distanciaIzquierda;
 
   AnimationController _controller;
@@ -214,12 +213,13 @@ class _Shalala extends State<Shalala>  with TickerProviderStateMixin{
 
               /// Las areas que disparan la animación ///
               /// ------------------------------------------ ///
+              ///
               Positioned(
                 top: screenSize.height*0.72,
                 left: distanciaIzquierda,
                 child: GestureDetector(
                   onTap: (){
-                    var tempName = (nombreAnimacion == 'cerrar') ? 'abrir' : 'cerrar';
+                    var tempName = (nombreAnimacion == 'seteo' || nombreAnimacion == 'cerrar') ? 'abrir' : 'cerrar';
                     setState(() {
                       nombreAnimacion = tempName;
                       _controller.forward(from: 0.0);
@@ -258,6 +258,8 @@ class _Shalala extends State<Shalala>  with TickerProviderStateMixin{
     );
   }
 }
+
+
 
 
 /// El trazado de la máscara ///
