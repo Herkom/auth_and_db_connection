@@ -10,12 +10,13 @@ class CustomLayout extends MultiChildRenderObjectWidget {
   RenderCustomLayoutBox createRenderObject(BuildContext context) {
     return RenderCustomLayoutBox();
   }
-
 }
 
-class RenderCustomLayoutBox extends RenderBox
-    with ContainerRenderObjectMixin<RenderBox, CustomLayoutParentData>,
-        RenderBoxContainerDefaultsMixin<RenderBox, CustomLayoutParentData> {
+class RenderCustomLayoutBox extends RenderBox with
+    ContainerRenderObjectMixin<RenderBox,
+    CustomLayoutParentData>,
+    RenderBoxContainerDefaultsMixin<RenderBox,
+    CustomLayoutParentData> {
 
   RenderCustomLayoutBox({List<RenderBox> children,}){
     addAll(children);
@@ -76,6 +77,7 @@ class RenderCustomLayoutBox extends RenderBox
 
   @override
   void performLayout() {
+    
     if (childCount == 0) {
       size = constraints.biggest;
       assert(size.isFinite);
@@ -86,6 +88,7 @@ class RenderCustomLayoutBox extends RenderBox
     double height = 0;
 
     RenderBox child = firstChild;
+
     while (child != null) {
       if (child == lastChild)
         break;
@@ -103,6 +106,8 @@ class RenderCustomLayoutBox extends RenderBox
     }
 
     size = Size(width, height);
+
+
 
     lastChild.layout(BoxConstraints(maxWidth: width, maxHeight: height), parentUsesSize: true);
     final CustomLayoutParentData childParentData = lastChild.parentData;
