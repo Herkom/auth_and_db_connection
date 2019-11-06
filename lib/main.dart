@@ -1,3 +1,5 @@
+import 'package:auth_and_db_connection/prueba.dart';
+
 import 'chat_route.dart';
 import 'profile_route.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
           '/dashboard': (context) => DashboardRoute(),
           '/perfil': (context) => ProfileRoute(),
           '/chat': (context) => ChatRoute(),
+          '/prueba': (context) => Prueba(),
         }
     );
   }

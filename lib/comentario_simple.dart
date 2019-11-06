@@ -30,9 +30,6 @@ class ComentarioSimple extends StatelessWidget{
               )
             ),
           ),
-
-
-
           Container(
             constraints: BoxConstraints(
               maxWidth: screenWidth/2,

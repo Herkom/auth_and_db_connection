@@ -13,10 +13,8 @@ class CustomLayout extends MultiChildRenderObjectWidget {
 }
 
 class RenderCustomLayoutBox extends RenderBox with
-    ContainerRenderObjectMixin<RenderBox,
-    CustomLayoutParentData>,
-    RenderBoxContainerDefaultsMixin<RenderBox,
-    CustomLayoutParentData> {
+    ContainerRenderObjectMixin<RenderBox, CustomLayoutParentData>,
+    RenderBoxContainerDefaultsMixin<RenderBox, CustomLayoutParentData> {
 
   RenderCustomLayoutBox({List<RenderBox> children,}){
     addAll(children);
@@ -77,7 +75,7 @@ class RenderCustomLayoutBox extends RenderBox with
 
   @override
   void performLayout() {
-    
+
     if (childCount == 0) {
       size = constraints.biggest;
       assert(size.isFinite);
@@ -94,7 +92,6 @@ class RenderCustomLayoutBox extends RenderBox with
         break;
 
       final CustomLayoutParentData childParentData = child.parentData;
-
       child.layout(BoxConstraints.tightFor(width: width), parentUsesSize: true);
       childParentData.offset = Offset(0, height);
 
@@ -105,16 +102,18 @@ class RenderCustomLayoutBox extends RenderBox with
       child = childParentData.nextSibling;
     }
 
+
+
     size = Size(width, height);
 
-
-
     lastChild.layout(BoxConstraints(maxWidth: width, maxHeight: height), parentUsesSize: true);
-    final CustomLayoutParentData childParentData = lastChild.parentData;
+   /* final CustomLayoutParentData childParentData = lastChild.parentData;
+
     final double margin = 20;
     final double x = size.width - lastChild.size.width - margin;
     final double y = height - childParentData.previousSibling.size.height - lastChild.size.height / 2;
     childParentData.offset = Offset(x, y);
+    */
   }
 
   @override

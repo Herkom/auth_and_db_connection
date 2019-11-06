@@ -4,11 +4,13 @@ import 'package:flutter/widgets.dart';
 
 class ComentarioFiscal extends StatelessWidget{
   double screenWidth;
+  double screenHeight;
 
   @override
   Widget build(BuildContext context) {
 
     screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
 
     // TODO: implement build
     return Stack(
