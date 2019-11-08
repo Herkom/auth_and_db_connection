@@ -27,6 +27,8 @@ dependencies:
   smart_flare: any
   flare_flutter: ^1.5.4
 
+  generic_bloc_provider: ^1.0.8
+
 
 flutter_icons:
   android: true

@@ -105,9 +105,9 @@ class RenderCustomLayoutBox extends RenderBox with
 
 
     size = Size(width, height);
-
+    /*
     lastChild.layout(BoxConstraints(maxWidth: width, maxHeight: height), parentUsesSize: true);
-   /* final CustomLayoutParentData childParentData = lastChild.parentData;
+    final CustomLayoutParentData childParentData = lastChild.parentData;
 
     final double margin = 20;
     final double x = size.width - lastChild.size.width - margin;
@@ -122,8 +122,8 @@ class RenderCustomLayoutBox extends RenderBox with
   }
 
   @override
-  bool hitTestChildren(HitTestResult result, { Offset position }) {
-    return defaultHitTestChildren(result, position: position);
+  bool hitTest(HitTestResult result, { Offset position }) {
+    return true;
   }
 }
 

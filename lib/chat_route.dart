@@ -5,6 +5,7 @@ import 'package:auth_and_db_connection/comentario_Fiscal_conImagen.dart';
 import 'package:auth_and_db_connection/comentario_simple.dart';
 import 'custom_layout.dart';
 import 'gradient_back.dart';
+import 'menu_pegajoso.dart';
 
 class ChatRoute extends StatefulWidget{
   @override
@@ -23,9 +24,6 @@ class _ChatRoute extends State<ChatRoute>{
 
     // TODO: implement build
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Mensajes', style: TextStyle(fontSize: 20.0),),
-        ),
         body:Stack(
           children: <Widget>[
             GradientBack( screenSize.height ),
@@ -164,17 +162,9 @@ class _ChatRoute extends State<ChatRoute>{
                   ],
                 ),
                 ComentarioFiscal(),
-                ComentarioSimple(path:'https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2133&q=80', comentario:'¡Muy interesante!'),
-                ComentarioSimple(path:'https://images.unsplash.com/photo-1512288094938-363287817259?ixlib=rb-1.2.1&auto=format&fit=crop&w=2133&q=80', comentario: '¡Qué bien!, un orgullo para nuestro Estado.'),
-                ComentarioConImagen(),
-                ComentarioSimple(path:'https://images.unsplash.com/photo-1542142860-60fbdf26b2d7?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ', comentario: 'Muy bien, a seguir trabajando'),
-                ComentarioSimple(path:'https://images.unsplash.com/photo-1509380836717-c4320ccf1a6f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=e01c8c45a063daaf6d6e571a32bd6c90', comentario: 'Nunca lo hubieramos logrado sin nuestro jefe'),
-                ComentarioSimple(path:'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1372&q=80', comentario: 'El Fiscal es puto.'),
-                ComentarioFiscal(),
-                ComentarioSimple(path:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ', comentario: 'No es puto, es putísimo.'),
-                ComentarioFiscal(),
               ],
             ),
+            MenuPegajoso(),
           ],
         )
     );
