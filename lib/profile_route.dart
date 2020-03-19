@@ -136,10 +136,12 @@ class SliverUsuario extends SliverPersistentHeaderDelegate {
           fit: BoxFit.cover,
           alignment: Alignment.center,
         ),
-        Image.network(
-          args.foto,
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
+        Container(
+          child: Image.network(
+            'http://200.56.118.28/${args.foto.substring(21)}',
+            fit: BoxFit.cover,
+            alignment: Alignment.center,
+          ),
         ),
         Positioned(
           bottom: 50.0,

@@ -3,7 +3,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 import 'User/bloc/user_bloc.dart';
 import 'chat_route.dart';
-//import 'profile_route.dart';
+import 'profile_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           '/botonera': (context) => BotoneraRoute(),
           //'/dashboard': (context) => DashboardRoute(),
           //'/registrate': (context) => RegistroRoute(),
-          //ProfileRoute.routeName: (context) => ProfileRoute(),
+          ProfileRoute.routeName: (context) => ProfileRoute(),
           '/chat': (context) => ChatRoute(),
           //'/prueba': (context) => Prueba(),
         }
