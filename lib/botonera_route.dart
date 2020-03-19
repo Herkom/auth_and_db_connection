@@ -1,16 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'gradient_back.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class BotoneraRoute extends StatelessWidget {
+
+class BotoneraRoute extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _BotoneraRoute();
+  }
+}
+
+class _BotoneraRoute extends State<BotoneraRoute> {
 
   double screenHeight;
   double screenWidth;
   int number;
   List<String> url;
   List<String> urls;
+  ScrollController _scrollController = ScrollController();
+  //double _initialScrollOffset;
+
+  initState(){
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      _scrollController.jumpTo(
+          _scrollController.position.maxScrollExtent
+      );
+    });
+    setState(() {
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +64,12 @@ class BotoneraRoute extends StatelessWidget {
       } else {
         throw 'Could not launch $url';
       }
-
     }
 
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          GradientBack( screenHeight ),
+          GradientBack(),
           SingleChildScrollView(
             child: Column(
               children: [
@@ -152,6 +174,7 @@ class BotoneraRoute extends StatelessWidget {
                   child: SizedBox(
                     height: 150.0,
                     child: ListView.builder(
+                      controller: _scrollController,
                       padding: EdgeInsets.symmetric(horizontal: 20.0),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,

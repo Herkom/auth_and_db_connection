@@ -11,7 +11,7 @@ class OnboardingPage extends StatefulWidget{
 class _OnboardingPageState extends State<OnboardingPage>{
 
   final PageController _pageController = PageController(initialPage: 0);
-  Color _colorDelTexto = Colors.transparent;
+  Color _colorDelTexto = Colors.black38;
 
 
   final int _numPages = 3;
@@ -101,7 +101,7 @@ class _OnboardingPageState extends State<OnboardingPage>{
                               curve: Curves.fastOutSlowIn,
                               duration: Duration(seconds: 2),
                               child: Text(
-                                  "This is a short explanation about what is the app's pourpuse",
+                                  "This is a short explanation about what is the app's purpose",
                                   style: TextStyle(
                                     color: _colorDelTexto,
                                     fontSize: 20.0,
@@ -139,7 +139,7 @@ class _OnboardingPageState extends State<OnboardingPage>{
                               curve: Curves.fastOutSlowIn,
                               duration: Duration(seconds: 2),
                               child: Text(
-                                  "This is a short explanation about what is the app's pourpuse",
+                                  "This is a short explanation about what is the app's purpose",
                                   style: TextStyle(
                                     color: _colorDelTexto,
                                     fontSize: 20.0,
@@ -176,7 +176,7 @@ class _OnboardingPageState extends State<OnboardingPage>{
                               curve: Curves.fastOutSlowIn,
                               duration: Duration(seconds: 2),
                               child: Text(
-                                  "This is a short explanation about what is the app's pourpuse",
+                                  "This is a short explanation about what is the app's purpose",
                                   style: TextStyle(
                                     color: _colorDelTexto,
                                     fontSize: 20.0,

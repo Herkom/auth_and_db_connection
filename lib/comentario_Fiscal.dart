@@ -6,6 +6,14 @@ class ComentarioFiscal extends StatelessWidget{
   double screenWidth;
   double screenHeight;
 
+  String nombre;
+  String fotoPerfil;
+  String date;
+  String contenido;
+  int likes;
+
+  ComentarioFiscal({ this.fotoPerfil, this.contenido, this.nombre, this.date, this.likes});
+
   @override
   Widget build(BuildContext context) {
 
@@ -35,14 +43,14 @@ class ComentarioFiscal extends StatelessWidget{
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          '18 de Noviembre 8:16 a.m.',
+                          date,
                           style: TextStyle(
                             fontSize: 12.0,
                             color: Colors.black38
                           ),
                         ),
                         Text(
-                          'Alejandro Álvarez',
+                          nombre,
                           style: TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
@@ -51,7 +59,7 @@ class ComentarioFiscal extends StatelessWidget{
                         Container(
                           margin: EdgeInsets.only(top: 15.0),
                           child: Text(
-                            'Excelente respuesta del público, interacción, muchas preguntas.',
+                            contenido,
                             style: TextStyle(
                               height: 1.5,
                               fontSize: 15.0,
@@ -78,7 +86,7 @@ class ComentarioFiscal extends StatelessWidget{
                             Container(
                               child: Row(
                                 children: <Widget>[
-                                  Text('101'),
+                                  Text('$likes'),
                                   Icon(Icons.favorite, color: Colors.grey,)
                                 ],
                               ),
@@ -99,7 +107,7 @@ class ComentarioFiscal extends StatelessWidget{
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               image: DecorationImage(
-                image: NetworkImage('https://pbs.twimg.com/media/D6EWSjvUEAAOBpO.jpg:large'),
+                image: NetworkImage(fotoPerfil),
                 fit: BoxFit.cover,
               )
             ),

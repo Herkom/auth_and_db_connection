@@ -16,7 +16,7 @@ class Prueba extends StatelessWidget{
     // TODO: implement build
     return Stack(
       children: <Widget>[
-        GradientBack(screenHeight),
+        GradientBack(),
         ListView(
           padding: EdgeInsets.symmetric( vertical: 50.0 ),
           children: <Widget>[

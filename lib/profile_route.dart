@@ -3,14 +3,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-import 'menu_pegajoso.dart';
+
+//import 'menu_pegajoso.dart';
+
+class ScreenArguments {
+  final String nombre;
+  final String foto;
+  final String uA;
+  final int claveInterna;
+
+  ScreenArguments(this.nombre, this.foto, this.uA, this.claveInterna);
+}
 
 class ProfileRoute extends StatelessWidget{
+  static const routeName = '/perfil';
   double screenHeight;
 
   @override
   Widget build(BuildContext context) {
-
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     screenHeight = MediaQuery.of(context).size.height;
 
     // TODO: implement build
@@ -25,7 +36,7 @@ class ProfileRoute extends StatelessWidget{
           child: CustomScrollView(
             slivers: <Widget>[
               SliverPersistentHeader(
-                delegate: SliverUsuario(expandedHeight: screenHeight*0.6),
+                delegate: SliverUsuario(expandedHeight: screenHeight*0.6, args: args),
                 pinned: false,
               ),
               SliverList(
@@ -37,6 +48,30 @@ class ProfileRoute extends StatelessWidget{
                       decoration: BoxDecoration(
                           color: Colors.blue.withAlpha(40),
                           borderRadius: BorderRadius.all(Radius.circular(15.0))
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            args.uA,
+                            style: TextStyle(
+                              color: Colors.black38,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Lato',
+                              fontSize: 20,
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
+                          Text(
+                            args.claveInterna.toString(),
+                            style: TextStyle(
+                              color: Colors.black38,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Lato',
+                              fontSize: 20,
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Container(
@@ -61,7 +96,13 @@ class ProfileRoute extends StatelessWidget{
             ],
           ),
         ),
-        MenuPegajoso(),
+
+
+        /// ------------------------------------------ ///
+        //MenuPegajoso(),
+        /// ------------------------------------------ ///
+
+
       ],
     );
   }
@@ -73,8 +114,9 @@ class ProfileRoute extends StatelessWidget{
 /// ------------------------------------------ ///
 class SliverUsuario extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
+  final ScreenArguments args;
 
-  SliverUsuario({@required this.expandedHeight});
+  SliverUsuario({@required this.expandedHeight, @required this.args});
 
   @override
   Widget build(
@@ -82,9 +124,20 @@ class SliverUsuario extends SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       overflow: Overflow.visible,
+      alignment: Alignment.center,
       children: [
-        Image.asset(
-          'assets/img/fotoChicaPerfil.png',
+        Image.network(
+          //'https://image.freepik.com/free-photo/blurred-background-blur-people-walking-street-shopping-center_7190-926.jpg'
+          //'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwthzrwHJ47Ab89iNikRDNzhmK1ShBuOYRJNZDnCuEohUEn6Fh'
+          //'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSNiDH-zgvte28gAty4KhFK2CsC-eE1wcGilixX8Dk4ZreKpMp1'
+          //No se ve tan chido 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQAR28KiPD6Y3b2c4APuNEVzZe2nmFeUvCn7vVrCtCKppu2nXbO'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ64aLfwL0UYQubyJ4lXg5x0z-i6eCraNUuCLO9y7vZ38WqxmSu'
+          ,
+          fit: BoxFit.cover,
+          alignment: Alignment.center,
+        ),
+        Image.network(
+          args.foto,
           fit: BoxFit.cover,
           alignment: Alignment.center,
         ),
@@ -94,14 +147,15 @@ class SliverUsuario extends SliverPersistentHeaderDelegate {
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             child: Text(
-              "Valeria Shoening",
+              args.nombre,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Lato',
-                fontSize: 30,
+                fontSize: 25,
                 decoration: TextDecoration.none,
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

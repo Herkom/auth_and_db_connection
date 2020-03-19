@@ -5,7 +5,8 @@ class GradientBack extends StatelessWidget {
   double screenHeight;
   double screenWidth;
   double height = 0.0;
-  GradientBack(this.height); //height = null será full screen
+  //height = null será full screen
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +15,11 @@ class GradientBack extends StatelessWidget {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
 
-    if(height == null){
-      height = screenHeight;
-    }
-
     return Stack(
       children: <Widget>[
         Container(
           width: screenWidth,
-          height: height,
+          height: screenHeight,
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
