@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'custom_layout.dart';
 
@@ -9,10 +11,11 @@ class ComentarioConImagen extends StatelessWidget{
   String fotoPerfil;
   String date;
   String contenido;
-  String imagen;
+  File imagen;
+  String imagenPath;
   int likes;
 
-  ComentarioConImagen({ this.fotoPerfil, this.contenido, this.nombre, this.date, this.likes, this.imagen});
+  ComentarioConImagen({ this.fotoPerfil, this.contenido, this.nombre, this.date, this.likes, this.imagen, this.imagenPath});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class ComentarioConImagen extends StatelessWidget{
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(imagen),
+                      image: imagenPath.contains('Pictures' ) ? FileImage(imagen) : NetworkImage(imagenPath),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.circular(15.0),

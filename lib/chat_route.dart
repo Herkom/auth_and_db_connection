@@ -50,7 +50,7 @@ class _ChatRoute extends State<ChatRoute>{
   List<MensajeFiscal> mensajes =  [
     MensajeFiscal(
       fotoPerfil: 'https://pbs.twimg.com/media/D6EWSjvUEAAOBpO.jpg:large',
-      imagen: 'http://www.osfetabasco.gob.mx/site/wp-content/themes/osfe/inc/slider/1-protesta.jpg',
+      imagenPath: 'http://www.osfetabasco.gob.mx/site/wp-content/themes/osfe/inc/slider/1-protesta.jpg',
       nombre: 'Alejandro Álvarez',
       date: '18 de noviembre de 2019, 8:16 a.m.',
       contenido: 'Extraordinaria participación de la comunidad tabasqueña en la propuesta de Ley para implementar nuestra app de transparencia en tiempo real Säc : Excelente Semana!',
@@ -59,7 +59,7 @@ class _ChatRoute extends State<ChatRoute>{
     ),
     MensajeFiscal(
       fotoPerfil: 'https://pbs.twimg.com/media/D6EWSjvUEAAOBpO.jpg:large',
-      imagen: null,
+      imagenPath: null,
       nombre: 'Alejandro Álvarez',
       date: '18 de noviembre de 2019, 9:31 a.m.',
       contenido: 'Excelente respuesta del público, interacción, muchas preguntas.',
@@ -68,7 +68,7 @@ class _ChatRoute extends State<ChatRoute>{
     ),
     MensajeFiscal(
       fotoPerfil: 'https://pbs.twimg.com/media/D6EWSjvUEAAOBpO.jpg:large',
-      imagen: 'https://instagram.fmtt1-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s750x750/82234773_605621290216016_4447359471249667814_n.jpg?_nc_ht=instagram.fmtt1-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=jCqjLL_igxYAX8tH8vQ&oh=c2018bcc612bdd9c16c2d718b8e7a2a9&oe=5E912500',
+      imagenPath: 'https://instagram.fmtt1-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s750x750/82234773_605621290216016_4447359471249667814_n.jpg?_nc_ht=instagram.fmtt1-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=jCqjLL_igxYAX8tH8vQ&oh=c2018bcc612bdd9c16c2d718b8e7a2a9&oe=5E912500',
       nombre: 'Alejandro Álvarez',
       date: '16 de enero de 2019, 8:16 a.m.',
       contenido: 'Recibí a personal de la Secretaría de la Función Pública del Estado para compartirles nuestra experiencia en la sistematización de nuestras auditorías,',
@@ -77,7 +77,7 @@ class _ChatRoute extends State<ChatRoute>{
     ),
     MensajeFiscal(
       fotoPerfil: 'https://pbs.twimg.com/media/D6EWSjvUEAAOBpO.jpg:large',
-      imagen: null,
+      imagenPath: null,
       nombre: 'Alejandro Álvarez',
       date: '2 de marzo de 2020, 10:00 a.m.',
       contenido: 'Favor de pasar a la Sala de Juntas.',
@@ -120,7 +120,7 @@ class _ChatRoute extends State<ChatRoute>{
               padding: EdgeInsetsDirectional.only(bottom: 70, top: 30),
               itemBuilder: (context, index) {
                 if(mensajes[index].extendido){
-                  return ComentarioConImagen(fotoPerfil: mensajes[index].fotoPerfil, contenido:mensajes[index].contenido, nombre:mensajes[index].nombre, date:mensajes[index].date, likes:mensajes[index].likes, imagen: mensajes[index].imagen,);
+                  return ComentarioConImagen(fotoPerfil: mensajes[index].fotoPerfil, contenido:mensajes[index].contenido, nombre:mensajes[index].nombre, date:mensajes[index].date, likes:mensajes[index].likes, imagenPath: mensajes[index].imagenPath, imagen: mensajes[index].imagen);
                 }
                 else{
                   return ComentarioFiscal(fotoPerfil: mensajes[index].fotoPerfil, contenido:mensajes[index].contenido, nombre:mensajes[index].nombre, date:mensajes[index].date, likes:mensajes[index].likes);
@@ -285,22 +285,12 @@ class _ChatRoute extends State<ChatRoute>{
                           padding: EdgeInsets.all(0),
                           color: Colors.white,
                           onPressed: () {
-                            print('----------------------------------------------------------------');
-                            print('________________________________________________________________');
-                            print('----------------------------------------------------------------');
-                            print('________________________________________________________________');
-                            print('----------------------------------------------------------------');
-                            print(imagen.uri);
-                            print('----------------------------------------------------------------');
-                            print('________________________________________________________________');
-                            print('----------------------------------------------------------------');
-                            print('________________________________________________________________');
-                            print('----------------------------------------------------------------');
                             setState(() {
                               mensajes.add(
                                   MensajeFiscal(
                                     fotoPerfil: 'https://pbs.twimg.com/media/D6EWSjvUEAAOBpO.jpg:large',
-                                    imagen: imagen.path,
+                                    imagen: imagen,
+                                    imagenPath: imagen == null ? null : imagen.path,
                                     nombre: 'Alejandro Álvarez',
                                     date: DateTime.now().toString(),
                                     contenido: textController.value.text,
@@ -318,7 +308,7 @@ class _ChatRoute extends State<ChatRoute>{
                                 );
                               }
                             );
-                            //imagen = null;
+                            imagen = null;
                             imageContainerHeight = 0.0;
                             textController.clear();
                           },
