@@ -229,21 +229,24 @@ class _LoginRouteState extends State<LoginRoute> {
                                     ),
                                   ),
                                   /// Lleva al chat
-                                  Container(
-                                    margin: EdgeInsets.symmetric(vertical:15.0, horizontal: 7.0),
-                                    child: FlatButton(
-                                      padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-                                      color: Color(0xFF040050),
-                                      textColor: Colors.white,
-                                      onPressed: (){Navigator.pushNamed(context, '/chat');},
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                      child: Text(
-                                        'Chat',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          decorationThickness: 2.85,
+                                  GestureDetector(
+                                    onLongPress: (){Navigator.pushNamed(context, '/chatAvanzado');},
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(vertical:15.0, horizontal: 7.0),
+                                      child: FlatButton(
+                                        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+                                        color: Color(0xFF040050),
+                                        textColor: Colors.white,
+                                        onPressed: (){Navigator.pushNamed(context, '/chat');},
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        child: Text(
+                                          'Chat',
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                            decorationThickness: 2.85,
+                                          ),
                                         ),
                                       ),
                                     ),

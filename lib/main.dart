@@ -3,6 +3,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 import 'User/bloc/user_bloc.dart';
 import 'chat_route.dart';
+import 'chat_route_advanced.dart';
 import 'profile_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'botonera_route.dart';
 //import 'demo_objetoDraggable.dart';
 //import 'demo_animateContainer.dart';
 //import 'registro_route.dart';
+import 'pantalla_mensajes.dart';
 
 void main() => runApp( MyApp() );
 
@@ -25,11 +27,12 @@ class MyApp extends StatelessWidget {
       bloc: UserBloc(),
       child: MaterialApp(
         title: 'OSFE',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.indigo,
         ),
         initialRoute: '/',
-        routes: {
+        routes: <String, WidgetBuilder>{
           //'/contenedorAnimado': (context) => DemoAnimateContainer(),
           //'/objetoDraggable': (context) => DemoDraggable(),
           '/': (context) => OnboardingPage(),
@@ -39,6 +42,8 @@ class MyApp extends StatelessWidget {
           //'/registrate': (context) => RegistroRoute(),
           ProfileRoute.routeName: (context) => ProfileRoute(),
           '/chat': (context) => ChatRoute(),
+          '/chatAvanzado': (context) => ChatRouteAdvanced(),
+          '/mensajes': (context) => PantallaMensajes(),
           //'/prueba': (context) => Prueba(),
         }
       )
