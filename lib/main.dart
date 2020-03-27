@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           ProfileRoute.routeName: (context) => ProfileRoute(),
           '/chat': (context) => ChatRoute(),
           '/chatAvanzado': (context) => ChatRouteAdvanced(),
-          '/mensajes': (context) => PantallaMensajes(),
+          PantallaMensajes.routeName: (context) => PantallaMensajes(),
           //'/prueba': (context) => Prueba(),
         }
       )

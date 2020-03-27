@@ -160,14 +160,14 @@ List<Message> chats = [
     time: '12:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
     isLiked: false,
-    unread: false,
+    unread: true,
   ),
   Message(
     sender: bety,
     time: '11:30 AM',
     text: 'Hey, how\'s it going? What did you do today?',
     isLiked: false,
-    unread: false,
+    unread: true,
   ),
 ];
 

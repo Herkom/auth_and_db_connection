@@ -8,7 +8,16 @@ class SelectorCategorias extends StatefulWidget {
 
 class _SelectorCategoriasState extends State<SelectorCategorias> {
   int indiceSeleccionado = 0;
-  final List<String> categorias = ['Avisos', 'Grupos', 'Mensajes directos'];
+  final List<String> categorias = ['Mensajes directos','Avisos','Grupos',];
+
+/*  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    indiceSeleccionado = 0;
+    setState(() {
+    });
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +31,10 @@ class _SelectorCategoriasState extends State<SelectorCategorias> {
             onTap: (){
               setState(() {
                 indiceSeleccionado = index;
+                if (index == 1){
+                  Navigator.pushNamed(context, '/chat');
+                  indiceSeleccionado = 0;
+                }
               });
             },
             child: Padding(

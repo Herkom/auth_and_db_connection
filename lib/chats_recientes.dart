@@ -1,3 +1,4 @@
+import 'package:auth_and_db_connection/pantalla_mensajes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -26,10 +27,10 @@ class ChatsRecientes extends StatelessWidget {
             itemBuilder: (BuildContext context, int index){
               final Message chat = chats[index];
               return GestureDetector(
-                onTap: (){Navigator.pushNamed(context, '/mensajes');},
+                onTap: (){Navigator.pushNamed(context, PantallaMensajes.routeName, arguments: ScreenArguments(chat.sender));},
                 child: Container(
                   margin: EdgeInsets.only(top: 5.0, bottom: 5.0, right: 20.0),
-                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
                   decoration: BoxDecoration(
                     color: chat.unread ? Color(0xFFFFEFEE) : Colors.white,
                     borderRadius: BorderRadius.only(

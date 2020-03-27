@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'User/model/user.dart';
 
-class PantallaMensajes extends StatefulWidget {
+class ScreenArguments {
   final Usuario usuario;
+  ScreenArguments(this.usuario);
+}
 
-  PantallaMensajes({this.usuario});
+class PantallaMensajes extends StatefulWidget {
+
+  static const routeName = '/mensajes';
 
   @override
   _PantallaMensajesState createState() => _PantallaMensajesState();
@@ -119,14 +123,16 @@ class _PantallaMensajesState extends State<PantallaMensajes> {
 
   @override
   Widget build(BuildContext context) {
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text(
-          widget.usuario.nombre,
+          args.usuario.nombre,
           style: TextStyle(
-            fontSize: 28.0,
-            fontWeight: FontWeight.bold
+            fontSize: 23.0,
+            letterSpacing: 1
           ),
         ),
         elevation: 0.0,

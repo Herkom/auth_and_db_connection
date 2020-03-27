@@ -1,4 +1,5 @@
 import 'package:auth_and_db_connection/User/model/mensaje.dart';
+import 'package:auth_and_db_connection/pantalla_mensajes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,7 @@ class ContactosFrecuentes extends StatelessWidget {
               itemCount: favoritos.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  onTap: (){Navigator.pushNamed(context, '/mensajes');},
+                  onTap: (){Navigator.pushNamed(context, PantallaMensajes.routeName, arguments: ScreenArguments(favoritos[index]));},
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Column(
