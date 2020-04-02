@@ -34,7 +34,7 @@ class _PantallaMensajesState extends State<PantallaMensajes> {
       padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
       width: MediaQuery.of(context).size.width * 0.75,
       decoration: BoxDecoration(
-        color: isMe ? Theme.of(context).accentColor : Color(0xFFFFEFEE),
+        color: isMe ? Colors.amberAccent.withAlpha(50) : Color(0xFFFFEFEE),
         borderRadius: isMe
           ? BorderRadius.only(
               topLeft: Radius.circular(15.0),
@@ -80,7 +80,7 @@ class _PantallaMensajesState extends State<PantallaMensajes> {
                 : Icon(Icons.favorite_border),
             iconSize: 30.0,
             color: message.isLiked
-                ? Theme.of(context).primaryColor
+                ? Colors.red
                 : Colors.blueGrey,
             onPressed: (){}
         )
@@ -128,12 +128,35 @@ class _PantallaMensajesState extends State<PantallaMensajes> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        title: Text(
-          args.usuario.nombre,
-          style: TextStyle(
-            fontSize: 23.0,
-            letterSpacing: 1
-          ),
+        title: Row(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 20.0,
+              backgroundImage: NetworkImage(args.usuario.foto),
+            ),
+            SizedBox(width: 12.0),
+            Column(
+              children: <Widget>[
+                Text(
+                  args.usuario.nombre,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                Text(
+                  'Conectado hace 24 min.',
+                  style: TextStyle(
+                      fontSize: 10.0,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.normal
+                  ),
+                )
+              ],
+            ),
+          ],
         ),
         elevation: 0.0,
         actions: <Widget>[
@@ -151,6 +174,7 @@ class _PantallaMensajesState extends State<PantallaMensajes> {
           children: <Widget>[
             Expanded(
               child: Container(
+                margin: EdgeInsets.only(top:10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

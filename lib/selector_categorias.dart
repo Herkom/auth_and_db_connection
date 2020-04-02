@@ -22,7 +22,7 @@ class _SelectorCategoriasState extends State<SelectorCategorias> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90.0,
+      height: 70.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categorias.length,
@@ -40,16 +40,26 @@ class _SelectorCategoriasState extends State<SelectorCategorias> {
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 20.0,
-                vertical: 30.0
+                vertical: 12.0
               ),
-              child: Text(
-                categorias[index],
-                style: TextStyle(
-                  color: index == indiceSeleccionado ? Colors.white : Colors.white60,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2
-                ),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    categorias[index],
+                    style: TextStyle(
+                      color: index == indiceSeleccionado ? Colors.white : Colors.white60,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 5),
+                    height: index == indiceSeleccionado ? 3.0 : 0.0,
+                    width: index == indiceSeleccionado ? 90 : 0.0,
+                    color: index == indiceSeleccionado ? Colors.white60 : Colors.transparent,
+                  )
+                ],
               ),
             ),
           );

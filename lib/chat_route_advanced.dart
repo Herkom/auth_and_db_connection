@@ -22,24 +22,28 @@ class _ChatRouteAdvancedState extends State<ChatRouteAdvanced> {
             color: Colors.white,
             onPressed: (){Navigator.pushNamed(context, '/login');}
         ),
-        title: Text(
+        /*title: Text(
           'Mensajes',
           style: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.bold
           ),
-        ),
+        ),*/
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.filter_list),
+              icon: Icon(Icons.more_horiz),
+              iconSize: 30.0,
               color: Colors.white,
-              onPressed: (){print('asd');})
+              onPressed: (){}
+          ),
         ],
       ),
       body: Column(
         children: <Widget>[
+
           SelectorCategorias(),
+
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -52,6 +56,18 @@ class _ChatRouteAdvancedState extends State<ChatRouteAdvanced> {
               child: Column(
                 children: <Widget>[
                   ContactosFrecuentes(),
+                  Container(
+                    padding: EdgeInsets.only(left: 20.0,top: 10.0, bottom: 12.0),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Recientes',
+                      style: TextStyle(
+                        color: Colors.black26,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
                   ChatsRecientes(),
                 ],
               ),

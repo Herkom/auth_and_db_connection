@@ -46,6 +46,7 @@ class ChatsRecientes extends StatelessWidget {
                           CircleAvatar(
                             radius: 35.0,
                             backgroundImage: NetworkImage(chat.sender.foto),
+                            backgroundColor: Colors.indigo.withAlpha(50),
                           ),
                           SizedBox(width: 10.0),
                           Column(
