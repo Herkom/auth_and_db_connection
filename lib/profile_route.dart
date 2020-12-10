@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 
-//import 'menu_pegajoso.dart';
+import 'menu_pegajoso.dart';
 
 class ScreenArguments {
   final String nombre;
@@ -99,7 +99,7 @@ class ProfileRoute extends StatelessWidget{
 
 
         /// ------------------------------------------ ///
-        //MenuPegajoso(),
+        MenuPegajoso(),
         /// ------------------------------------------ ///
 
 
